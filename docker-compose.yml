@@ -1,0 +1,17 @@
+services:
+  python-template:
+    build: .
+    container_name: python-best-template
+    image: python-best-template
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    networks:
+      - python-template-network
+
+networks:
+  python-template-network:
+    external: true
