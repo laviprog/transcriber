@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from src.lifecycle import lifespan
+from src.database.config import init_alchemy
 from src.routes import router
+from src.users.routes import router as user_router
+from src.auth.routes import router as auth_router
 
 app = FastAPI(
     title="Voice Recognition API",
@@ -11,8 +13,9 @@ app = FastAPI(
     redoc_url="/docs/redoc",
     openapi_url="/openapi.json",
     root_path="/api/v1",
-    lifespan=lifespan,
 )
+
+init_alchemy(app)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,3 +26,5 @@ app.add_middleware(
 )
 
 app.include_router(router=router)
+app.include_router(router=user_router)
+app.include_router(router=auth_router)
