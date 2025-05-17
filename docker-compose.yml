@@ -1,17 +1,50 @@
 services:
-  python-template:
-    build: .
-    container_name: python-best-template
-    image: python-best-template
+  voice-recognition:
+    build:
+      context: .
+      dockerfile: Dockerfile # ← Change to Dockerfile.cuda for CUDA build
+    container_name: voice_recognition
+    image: voice_recognition
     ports:
       - "127.0.0.1:8000:8000"
     env_file:
       - .env
-    volumes:
-      - .:/app
+    depends_on:
+      - postgres-voice-recognition
     networks:
-      - python-template-network
+      - voice-recognition-network
+
+    # 🟡 GPU SUPPORT (CUDA):
+    # If you want to enable GPU acceleration, follow these steps:
+    # 1. Change the `dockerfile:` to `Dockerfile.cuda`
+    # 2. Make sure you have NVIDIA Container Toolkit installed: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/
+    # 3. Uncomment ONE of the options below depending on your Docker setup
+
+    # ✅ Option A: Standard Docker Compose (recommended)
+    # runtime: nvidia
+
+    # 🔁 Option B: Only for Docker Swarm mode (will be ignored in normal compose)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  postgres-voice-recognition:
+    image: postgres:15
+    container_name: postgres-voice-recognition
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "127.0.0.1:5432:5432"
+    networks:
+      - voice-recognition-network
 
 networks:
-  python-template-network:
+  voice-recognition-network:
     external: true
