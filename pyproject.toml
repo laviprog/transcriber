@@ -1,9 +1,9 @@
 [project]
-name = "python-best-template"
-version = "0.1.0"
-description = "This is the best template for Python projects."
+name = "voice-recognition"
+version = "0.0.1"
+description = "Voice Recognition is an API for automatic speech recognition, enabling accurate transcription of audio into text."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "black>=25.1.0",
     "isort>=6.0.1",
@@ -13,12 +13,12 @@ dependencies = [
 ]
 
 [tool.black]
-line-length = 100
-target-version = ['py312']
+line-length = 80
+target-version = ['py310']
 
 [tool.isort]
 profile = "black"
-line_length = 100
+line_length = 80
 multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
@@ -68,6 +68,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
+    "migrations"
 ]
 
-line-length = 100
+line-length = 80
