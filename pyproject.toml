@@ -5,11 +5,18 @@ description = "Voice Recognition is an API for automatic speech recognition, ena
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "advanced-alchemy>=1.4.1",
+    "asyncpg>=0.30.0",
     "black>=25.1.0",
+    "fastapi>=0.115.12",
     "isort>=6.0.1",
+    "pydantic>=2.11.4",
     "pydantic-settings>=2.9.1",
     "pytest>=8.3.5",
     "ruff>=0.11.8",
+    "scalar-fastapi>=1.0.3",
+    "sqlalchemy>=2.0.40",
+    "uvicorn>=0.34.2",
 ]
 
 [tool.black]
