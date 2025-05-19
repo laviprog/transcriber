@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from src.database.config import init_alchemy
+from src.auth.routes import router as auth_router
+from src.exceptions.handlers import setup_exception_handlers
+from src.exceptions.responses import error_responses
 from src.routes import router
 from src.users.routes import router as user_router
-from src.auth.routes import router as auth_router
 
 app = FastAPI(
     title="Voice Recognition API",
@@ -13,9 +14,10 @@ app = FastAPI(
     redoc_url="/docs/redoc",
     openapi_url="/openapi.json",
     root_path="/api/v1",
+    responses=error_responses,
 )
 
-init_alchemy(app)
+setup_exception_handlers(app)
 
 app.add_middleware(
     CORSMiddleware,

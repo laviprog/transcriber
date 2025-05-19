@@ -35,7 +35,6 @@ services:
   postgres-voice-recognition:
     image: postgres:15
     container_name: postgres-voice-recognition
-    restart: always
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}

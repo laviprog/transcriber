@@ -1,12 +1,27 @@
+from datetime import datetime
+
 from fastapi import APIRouter
 from scalar_fastapi import get_scalar_api_reference
 
-router = APIRouter()
+from src.schemas import HealthCheck
+
+router = APIRouter(tags=["Monitoring"])
 
 
-@router.get("/healthcheck", summary="Health Check", tags=["Monitoring"])
-async def healthcheck():
-    return {"status": "ok"}
+@router.get(
+    "/healthcheck",
+    summary="Health Check",
+    description="""
+        Checks whether the API service is operational and responding
+    """,
+    responses={
+        200: {
+            "description": "Service is running",
+        },
+    },
+)
+async def healthcheck() -> HealthCheck:
+    return HealthCheck(timestamp=datetime.utcnow().isoformat())
 
 
 @router.get("/docs", include_in_schema=False)
