@@ -3,23 +3,23 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from src.config import settings
-from src.transcription.enums import Model
-from src.transcription.services import SpeechTranscriptionService
-from src.transcription.speech_transcription import SpeechTranscription
+from src.recognition.enums import Model
+from src.recognition.recognizer import Recognizer
+from src.recognition.services import RecognitionService
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    transcriber = SpeechTranscription(
+    recognizer = Recognizer(
         device=settings.DEVICE,
         compute_type=settings.COMPUTE_TYPE,
         download_root=settings.DOWNLOAD_ROOT,
         init_models=[Model.SMALL],
     )
 
-    transcription_service = SpeechTranscriptionService(transcriber=transcriber)
-    app.state.transcription_service = transcription_service
+    recognition_service = RecognitionService(recognizer=recognizer)
+    app.state.recognition_service = recognition_service
 
     yield
 
-    transcription_service.clean()
+    recognition_service.clean()

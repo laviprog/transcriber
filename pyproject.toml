@@ -1,7 +1,7 @@
 [project]
-name = "speech-transcription"
+name = "voice-recognition"
 version = "0.0.1"
-description = "Speech Transcription is an API for automatic speech transcription, enabling accurate transcription of audio into text."
+description = "Voice Recognition is an API for automatic speech recognition, enabling accurate transcription of audio into text."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -10,14 +10,12 @@ dependencies = [
     "bcrypt<4.1",
     "black>=25.1.0",
     "fastapi>=0.115.12",
-    "freezegun>=1.5.1",
     "isort>=6.0.1",
     "passlib[bcrypt]>=1.7.4",
     "pydantic>=2.11.4",
     "pydantic-settings>=2.9.1",
     "pyjwt>=2.10.1",
     "pytest>=8.3.5",
-    "pytest-asyncio>=0.26.0",
     "python-multipart>=0.0.12",
     "ruff>=0.11.8",
     "scalar-fastapi>=1.0.3",
