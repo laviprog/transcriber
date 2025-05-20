@@ -731,6 +731,18 @@ wheels = [
 ]
 
 [[package]]
+name = "freezegun"
+version = "1.5.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dateutil" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2c/ef/722b8d71ddf4d48f25f6d78aa2533d505bf3eec000a7cacb8ccc8de61f2f/freezegun-1.5.1.tar.gz", hash = "sha256:b29dedfcda6d5e8e083ce71b2b542753ad48cfec44037b3fc79702e2980a89e9", size = 33697, upload_time = "2024-05-11T17:32:53.911Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/0b/0d7fee5919bccc1fdc1c2a7528b98f65c6f69b223a3fd8f809918c142c36/freezegun-1.5.1-py3-none-any.whl", hash = "sha256:bf111d7138a8abe55ab48a71755673dbaa4ab87f4cff5634a4442dfec34c15f1", size = 17569, upload_time = "2024-05-11T17:32:51.715Z" },
+]
+
+[[package]]
 name = "frozenlist"
 version = "1.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2227,6 +2239,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pytest-asyncio"
+version = "0.26.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8e/c4/453c52c659521066969523e87d85d54139bbd17b78f09532fb8eb8cdb58e/pytest_asyncio-0.26.0.tar.gz", hash = "sha256:c4df2a697648241ff39e7f0e4a73050b03f123f760673956cf0d72a4990e312f", size = 54156, upload_time = "2025-03-25T06:22:28.883Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/20/7f/338843f449ace853647ace35870874f69a764d251872ed1b4de9f234822c/pytest_asyncio-0.26.0-py3-none-any.whl", hash = "sha256:7b51ed894f4fbea1340262bdae5135797ebbe21d8638978e35d31c6d19f72fb0", size = 19694, upload_time = "2025-03-25T06:22:27.807Z" },
+]
+
+[[package]]
 name = "python-dateutil"
 version = "2.9.0.post0"
 source = { registry = "https://pypi.org/simple" }
@@ -2753,6 +2777,57 @@ wheels = [
 ]
 
 [[package]]
+name = "speech-transcription"
+version = "0.0.1"
+source = { virtual = "." }
+dependencies = [
+    { name = "advanced-alchemy" },
+    { name = "asyncpg" },
+    { name = "bcrypt" },
+    { name = "black" },
+    { name = "fastapi" },
+    { name = "freezegun" },
+    { name = "isort" },
+    { name = "passlib", extra = ["bcrypt"] },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pyjwt" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "python-multipart" },
+    { name = "ruff" },
+    { name = "scalar-fastapi" },
+    { name = "sqlalchemy" },
+    { name = "srt" },
+    { name = "uvicorn" },
+    { name = "whisperx" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "advanced-alchemy", specifier = ">=1.4.1" },
+    { name = "asyncpg", specifier = ">=0.30.0" },
+    { name = "bcrypt", specifier = "<4.1" },
+    { name = "black", specifier = ">=25.1.0" },
+    { name = "fastapi", specifier = ">=0.115.12" },
+    { name = "freezegun", specifier = ">=1.5.1" },
+    { name = "isort", specifier = ">=6.0.1" },
+    { name = "passlib", extras = ["bcrypt"], specifier = ">=1.7.4" },
+    { name = "pydantic", specifier = ">=2.11.4" },
+    { name = "pydantic-settings", specifier = ">=2.9.1" },
+    { name = "pyjwt", specifier = ">=2.10.1" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=0.26.0" },
+    { name = "python-multipart", specifier = ">=0.0.12" },
+    { name = "ruff", specifier = ">=0.11.8" },
+    { name = "scalar-fastapi", specifier = ">=1.0.3" },
+    { name = "sqlalchemy", specifier = ">=2.0.40" },
+    { name = "srt", specifier = ">=3.5.3" },
+    { name = "uvicorn", specifier = ">=0.34.2" },
+    { name = "whisperx", specifier = ">=3.3.1" },
+]
+
+[[package]]
 name = "speechbrain"
 version = "1.0.3"
 source = { registry = "https://pypi.org/simple" }
@@ -3184,53 +3259,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a6/ae/9bbb19b9e1c450cf9ecaef06463e40234d98d95bf572fab11b4f19ae5ded/uvicorn-0.34.2.tar.gz", hash = "sha256:0e929828f6186353a80b58ea719861d2629d766293b6d19baf086ba31d4f3328", size = 76815, upload_time = "2025-04-19T06:02:50.101Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b1/4b/4cef6ce21a2aaca9d852a6e84ef4f135d99fcd74fa75105e2fc0c8308acd/uvicorn-0.34.2-py3-none-any.whl", hash = "sha256:deb49af569084536d269fe0a6d67e3754f104cf03aba7c11c40f01aadf33c403", size = 62483, upload_time = "2025-04-19T06:02:48.42Z" },
-]
-
-[[package]]
-name = "voice-recognition"
-version = "0.0.1"
-source = { virtual = "." }
-dependencies = [
-    { name = "advanced-alchemy" },
-    { name = "asyncpg" },
-    { name = "bcrypt" },
-    { name = "black" },
-    { name = "fastapi" },
-    { name = "isort" },
-    { name = "passlib", extra = ["bcrypt"] },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "pyjwt" },
-    { name = "pytest" },
-    { name = "python-multipart" },
-    { name = "ruff" },
-    { name = "scalar-fastapi" },
-    { name = "sqlalchemy" },
-    { name = "srt" },
-    { name = "uvicorn" },
-    { name = "whisperx" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "advanced-alchemy", specifier = ">=1.4.1" },
-    { name = "asyncpg", specifier = ">=0.30.0" },
-    { name = "bcrypt", specifier = "<4.1" },
-    { name = "black", specifier = ">=25.1.0" },
-    { name = "fastapi", specifier = ">=0.115.12" },
-    { name = "isort", specifier = ">=6.0.1" },
-    { name = "passlib", extras = ["bcrypt"], specifier = ">=1.7.4" },
-    { name = "pydantic", specifier = ">=2.11.4" },
-    { name = "pydantic-settings", specifier = ">=2.9.1" },
-    { name = "pyjwt", specifier = ">=2.10.1" },
-    { name = "pytest", specifier = ">=8.3.5" },
-    { name = "python-multipart", specifier = ">=0.0.12" },
-    { name = "ruff", specifier = ">=0.11.8" },
-    { name = "scalar-fastapi", specifier = ">=1.0.3" },
-    { name = "sqlalchemy", specifier = ">=2.0.40" },
-    { name = "srt", specifier = ">=3.5.3" },
-    { name = "uvicorn", specifier = ">=0.34.2" },
-    { name = "whisperx", specifier = ">=3.3.1" },
 ]
 
 [[package]]
