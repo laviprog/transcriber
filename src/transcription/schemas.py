@@ -16,9 +16,9 @@ class Segment(BaseModel):
     end: float = Field(..., description="End of the segment in seconds")
 
 
-class RecognitionSrtResult(BaseModel):
+class TranscriptionSrtResult(BaseModel):
     srt: list[Segment]
 
 
-class RecognitionTextResult(BaseModel):
+class TranscriptionTextResult(BaseModel):
     text: str

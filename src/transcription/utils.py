@@ -5,7 +5,7 @@ from pathlib import Path
 
 from fastapi import UploadFile
 
-from src.recognition import log
+from src.transcription import log
 
 
 def save_upload_file(upload_file: UploadFile, dir_save: str = "files") -> str:

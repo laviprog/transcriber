@@ -5,15 +5,15 @@ import whisperx
 from whisperx.asr import FasterWhisperPipeline
 from whisperx.types import SingleSegment
 
-from src.recognition import log
-from src.recognition.enums import Language, Model
+from src.transcription import log
+from src.transcription.enums import Language, Model
 
 
-class Recognizer:
+class SpeechTranscription:
     """
-    Handles audio recognition using WhisperX models.
+    Handles audio transcription using WhisperX models.
 
-    Supports loading and caching multiple models, recognizing audio files,
+    Supports loading and caching multiple models, transcription audio files,
     and cleaning up memory (including CUDA cache).
     """
 
@@ -25,7 +25,7 @@ class Recognizer:
         init_models: list[Model] | None = None,
     ):
         """
-        Initializes the Recognizer with device configuration and optional models to preload.
+        Initializes the SpeechTranscription with device configuration and optional models to preload.
 
         :param device: Device to use for inference ("cpu" or "cuda").
         :param compute_type: Compute type for inference (e.g., "float32", "int8").
@@ -87,7 +87,7 @@ class Recognizer:
             log.error("Failed to load model %s: %s", model_name, e)
             raise e
 
-    def recognize(
+    def transcribe(
         self,
         audio_file: str,
         model: Model,
@@ -99,12 +99,12 @@ class Recognizer:
         Transcribes the given audio file using the specified model and language.
 
         :param audio_file: Path to the audio file.
-        :param model: Recognition model to use.
+        :param model: Transcription model to use.
         :param batch_size: Batch size for inference.
         :param chunk_size: Chunk size (in seconds) for audio splitting.
         :param language: Optional language to guide transcription.
 
-        :return: List of recognized segments with text and timestamps.
+        :return: List of transcribed segments with text and timestamps.
         """
 
         log.debug("Loading audio file %s...", audio_file)

@@ -3,53 +3,53 @@ from typing import Union
 from fastapi import UploadFile
 from whisperx.types import SingleSegment
 
-from src.recognition.enums import Language, Model, ResultFormat
-from src.recognition.recognizer import Recognizer
-from src.recognition.schemas import (
-    RecognitionSrtResult,
-    RecognitionTextResult,
+from src.transcription.enums import Language, Model, ResultFormat
+from src.transcription.schemas import (
     Segment,
+    TranscriptionSrtResult,
+    TranscriptionTextResult,
 )
-from src.recognition.utils import temporary_audio_file
+from src.transcription.speech_transcription import SpeechTranscription
+from src.transcription.utils import temporary_audio_file
 
 
-class RecognitionService:
-    def __init__(self, recognizer: Recognizer):
-        self._recognizer = recognizer
+class SpeechTranscriptionService:
+    def __init__(self, transcriber: SpeechTranscription):
+        self._transcriber = transcriber
 
-    def recognize(
+    def transcribe(
         self,
         file: UploadFile,
         model: Model = Model.SMALL,
         language: Language | None = None,
         format_result: ResultFormat = ResultFormat.TEXT,
-    ) -> Union[RecognitionTextResult, RecognitionSrtResult]:
+    ) -> Union[TranscriptionTextResult, TranscriptionSrtResult]:
         """
-        Recognizes speech from an uploaded audio file and returns the result
+        Transcribes speech from an uploaded audio file and returns the result
         in the specified format.
 
         :param file: Uploaded audio file to be processed.
-        :param model: Recognition model to use (e.g., Model.SMALL, Model.MEDIUM).
+        :param model: Transcription model to use (e.g., Model.SMALL, Model.MEDIUM).
         :param language: Optional language enum value (e.g., Language.EN, Language.RU).
-        :param format_result: Output format for the recognition result (e.g., ResultFormat.TEXT, ResultFormat.SRT).
+        :param format_result: Output format for the transcription result (e.g., ResultFormat.TEXT, ResultFormat.SRT).
 
-        :return: A recognition result in the selected format (text or subtitle).
+        :return: A transcription result in the selected format (text or subtitle).
         """
-        segments = self._recognize(file, model, language)
+        segments = self._transcribe(file, model, language)
 
         if format_result == ResultFormat.TEXT:
             text = self._to_text(segments)
-            return RecognitionTextResult(text=text)
+            return TranscriptionTextResult(text=text)
 
         srt = self._to_srt(segments)
-        return RecognitionSrtResult(srt=srt)
+        return TranscriptionSrtResult(srt=srt)
 
     @staticmethod
     def _to_text(segments: list[SingleSegment]) -> str:
         """
-        Converts recognition segments into plain text.
+        Converts transcription segments into plain text.
 
-        :param segments: List of recognition segments.
+        :param segments: List of transcription segments.
 
         :return: Concatenated transcription text.
         """
@@ -58,9 +58,9 @@ class RecognitionService:
     @staticmethod
     def _to_srt(segments: list[SingleSegment]) -> list[Segment]:
         """
-        Converts recognition segments into SRT-like structured segments.
+        Converts transcription segments into SRT-like structured segments.
 
-        :param segments: List of recognition segments.
+        :param segments: List of transcription segments.
 
         :return: List of Segment objects suitable for SRT serialization.
         """
@@ -74,33 +74,33 @@ class RecognitionService:
             for index, segment in enumerate(segments, start=1)
         ]
 
-    def _recognize(
+    def _transcribe(
         self,
         file: UploadFile,
         model: Model = Model.SMALL,
         language: Language | None = None,
     ) -> list[SingleSegment]:
         """
-        Recognizes speech from the uploaded audio file using the specified model and language.
+        Transcribes from the uploaded audio file using the specified model and language.
 
-        The file is temporarily saved to disk and passed to the underlying recognizer.
+        The file is temporarily saved to disk and passed to the underlying transcriber.
 
         :param file: Uploaded audio file to be processed.
-        :param model: Recognition model to use (e.g., Model.SMALL, Model.MEDIUM).
+        :param model: Transcription model to use (e.g., Model.SMALL, Model.MEDIUM).
         :param language: Optional language enum value (e.g., Language.EN, Language.RU).
 
-        :return: List of recognized segments containing transcribed text and timestamps.
+        :return: List of transcribed segments containing transcribed text and timestamps.
         """
 
         with temporary_audio_file(file) as path:
-            return self._recognizer.recognize(
+            return self._transcriber.transcribe(
                 audio_file=path, model=model, language=language
             )
 
     def clean(self):
         """
-        Clean up resources held by the recognizer (e.g., cached models).
+        Clean up resources held by the transcriber (e.g., cached models).
         Should be called on application shutdown.
         """
 
-        self._recognizer.clean()
+        self._transcriber.clean()

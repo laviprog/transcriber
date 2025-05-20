@@ -28,5 +28,5 @@ async def healthcheck() -> HealthCheck:
 async def scalar_html():
     return get_scalar_api_reference(
         openapi_url="/openapi.json",
-        title="Voice Recognition API",
+        title="Speech Transcription API",
     )
