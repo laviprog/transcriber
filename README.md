@@ -1,67 +1,64 @@
-# 🐍 Python Best Template
+# 🎙 Speech Transcription API
 
-A clean and modern Python project template — ready for production, scalable, and developer-friendly.
+Speech Transcription API is a RESTful service that processes audio input and converts speech into text using state-of-the-art speech recognition models. Ideal for building transcription tools, smart assistants, and voice-controlled applications.
 
----
+## 🛠️ Getting Started
 
-## 📚 Table of Contents
+Follow the steps below to set up and run the Speech Transcription API using Docker (with optional GPU acceleration).
 
-- [📦 Installation](#-installation)
-  - [🔁 Option 1: Use as GitHub Template (Recommended)](#-option-1-use-as-github-template-recommended)
-  - [🧱 Option 2: Clone Directly](#-option-2-clone-directly)
-- [📁 Project Structure](#-project-structure)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+### 📦 Install Dependencies
 
----
+You can use either uv (recommended for speed) or pip.
 
-## 📦 Installation
-
-### 🔁 Option 1: Use as GitHub Template (Recommended)
-
-Click the "Use this template" button on the top right of the [repository page](https://github.com/laviprog/python-best-template) to create a new repository based on this template.
-
-### 🧱 Option 2: Clone Directly
-
-If you prefer to manually clone and configure the template, follow these steps:
-
-1. Clone the template repository
-    ```bash
-    git clone https://github.com/laviprog/python-best-template.git
-    ```
-2. Navigate into the project directory'
-    ```bash
-    cd python-best-template
-    ```
-3. Remove the existing git history
-   ```bash
-   rm -rf .git
-   ```
-
-You’re now ready to start building your own project using this template!
-
-## 📁 Project Structure
-
-```
-python-best-template/
-├── src/                # main application code
-│   ├── __init__.py
-│   ├── config.py
-│   └── main.py
-├── tests/
-├── .env.example
-├── Dockerfile
-├── docker-compose.yml
-├── pytest.ini
-├── pyproject.toml
-├── requirements.txt
-└── README.md
+#### Using `uv`:
+```bash
+  uv sync
 ```
 
-## 🤝 Contributing
+#### Using `pip`:
+1. Create a virtual environment:
+    ```bash
+      python -m venv .venv
+    ```
+2. Activate the virtual environment:
+    ```bash
+      source .venv/bin/activate  # Linux/macOS
+      # .venv\Scripts\activate   # Windows
+    ```
+3. Install the required packages:
+    ```bash
+      pip install -r requirements.txt
+    ```
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+### ⚙️ Configure Environment Variables
 
-## 📄 License
+Copy the example environment file and fill in the necessary values:
 
-This project is licensed under the MIT License.
+```bash
+  cp .env.example .env
+```
+
+Edit the `.env` file to set your environment variables. You can use the default values or customize them as needed.
+
+### 🐳 Build and Run the Docker Container
+
+#### Using CPU:
+Start the Docker container with the following command:
+
+```bash
+  docker-compose up --build
+```
+This command will build the Docker image and start the container.
+
+#### Using GPU:
+
+Set up the `docker-compose.yml` file to use GPU acceleration.
+
+```bash
+  docker-compose up --build
+```
+
+This command will build the Docker image and start the container with GPU support.
+
+Then, API will be available at `http://localhost:8000`.
+Documentation will be available at `http://localhost:8000/docs`.

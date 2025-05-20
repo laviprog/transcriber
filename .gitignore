@@ -21,3 +21,6 @@ wheels/
 htmlcov/
 
 .python-version
+
+files/
+models/
