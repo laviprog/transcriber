@@ -21,7 +21,9 @@ annotated-types==0.7.0
 antlr4-python3-runtime==4.9.3
     # via omegaconf
 anyio==4.9.0
-    # via starlette
+    # via
+    #   httpx
+    #   starlette
 argon2-cffi==23.1.0
     # via passlib
 argon2-cffi-bindings==21.2.0
@@ -37,7 +39,10 @@ av==14.4.0
 black==25.1.0
     # via -r requirements.in
 certifi==2025.4.26
-    # via requests
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
 cffi==1.17.1
     # via
     #   argon2-cffi-bindings
@@ -88,8 +93,6 @@ flatbuffers==25.2.10
     # via onnxruntime
 fonttools==4.58.0
     # via matplotlib
-freezegun==1.5.1
-    # via -r requirements.in
 frozenlist==1.6.0
     # via
     #   aiohttp
@@ -105,7 +108,13 @@ greenlet==3.2.2
     #   advanced-alchemy
     #   sqlalchemy
 h11==0.16.0
-    # via uvicorn
+    # via
+    #   httpcore
+    #   uvicorn
+httpcore==1.0.9
+    # via httpx
+httpx==0.28.1
+    # via -r requirements.in
 huggingface-hub==0.31.4
     # via
     #   faster-whisper
@@ -120,6 +129,7 @@ hyperpyyaml==1.2.2
 idna==3.10
     # via
     #   anyio
+    #   httpx
     #   requests
     #   yarl
 iniconfig==2.1.0
@@ -281,7 +291,6 @@ pytest-asyncio==0.26.0
     # via -r requirements.in
 python-dateutil==2.9.0.post0
     # via
-    #   freezegun
     #   matplotlib
     #   pandas
 python-dotenv==1.1.0

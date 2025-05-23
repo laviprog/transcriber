@@ -12,13 +12,13 @@ class Settings(BaseSettings):
 
     SECRET_KEY: str
     SECRET_REFRESH_KEY: str
-    JWT_ALGORITHM: str
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
-    REFRESH_TOKEN_EXPIRE_DAYS: int
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
-    DEVICE: str
-    COMPUTE_TYPE: str
-    DOWNLOAD_ROOT: str
+    DEVICE: str = "cpu"
+    COMPUTE_TYPE: str = "float32"
+    DOWNLOAD_ROOT: str = "models"
 
     @property
     def DB_URL(self) -> str:
