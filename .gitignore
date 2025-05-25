@@ -24,3 +24,4 @@ htmlcov/
 
 files/
 models/
+.DS_Store
